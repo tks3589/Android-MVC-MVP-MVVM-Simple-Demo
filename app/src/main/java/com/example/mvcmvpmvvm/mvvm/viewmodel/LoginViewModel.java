@@ -11,32 +11,39 @@ import com.example.mvcmvpmvvm.mvvm.model.User;
  */
 public class LoginViewModel extends ViewModel {
     private User user;
-    private MutableLiveData<Boolean> isLoginSuccessfulLD;
+    private MutableLiveData<Integer> loginStatus;
 
     public LoginViewModel() {
-        this.isLoginSuccessfulLD = new MutableLiveData<>();
+        this.loginStatus = new MutableLiveData<>();
         user = new User();
     }
 
-    public MutableLiveData<Boolean> getIsLoginSuccessfulLD() {
-        return isLoginSuccessfulLD;
+    public MutableLiveData<Integer> getLoginStatus() {
+        return loginStatus;
     }
 
-    public void setIsLoginSuccessfulLD(boolean isLoginSuccessful) {
-        isLoginSuccessfulLD.postValue(isLoginSuccessful);
+    public void setLoginStatus(int loginStatusCode) { // 0:登入成功 1:登入失敗 2:登出
+        loginStatus.postValue(loginStatusCode);
     }
 
     public void login(String userName, String password) {
         if (userName.equals("jere") && password.equals("123")) {
             user.setUserName(userName);
             user.setPassword(password);
-            setIsLoginSuccessfulLD(true);
+            setLoginStatus(0);
+
         } else {
-            setIsLoginSuccessfulLD(false);
+            setLoginStatus(1);
         }
     }
 
-    public String getUserName() {
-        return user.getUserName();
+    public void logout(){
+        user.setUserName("");
+        user.setPassword("");
+        setLoginStatus(2);
+    }
+
+    public User getUser() {
+        return user;
     }
 }

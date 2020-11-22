@@ -4,8 +4,8 @@ package com.example.mvcmvpmvvm.mvp.model;
  * @author jere
  */
 public class User {
-    private String userName;
-    private String password;
+    private String userName = "";
+    private String password = "";
 
     public String getUserName() {
         return userName;
@@ -22,4 +22,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

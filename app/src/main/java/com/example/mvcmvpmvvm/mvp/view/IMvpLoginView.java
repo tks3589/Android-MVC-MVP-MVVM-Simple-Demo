@@ -4,9 +4,8 @@ package com.example.mvcmvpmvvm.mvp.view;
  * @author jere
  */
 public interface IMvpLoginView {
-    String getUserName();
-
-    String getPassword();
 
     void onLoginResult(Boolean isLoginSuccess);
+
+    void onLogoutResult(); //TM多個功能就多個接口
 }
